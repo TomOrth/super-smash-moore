@@ -1,7 +1,10 @@
 package com.tom.greg.matt.smash;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferStrategy;
 
 public class Main extends Canvas implements Runnable {
 	
@@ -9,13 +12,28 @@ public class Main extends Canvas implements Runnable {
 	public static boolean running = false, gameOver = false;
 	private Thread thread;
 	private int seconds = 0;
+	public Handler handler;
 	
 	private void init() {
 		
 	}
 	
 	private void render() {
+		BufferStrategy bs = getBufferStrategy();
+		if (bs == null) {
+			createBufferStrategy(3);
+			return;
+		}
+
+		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
+
+		g.setColor(Color.BLUE.brighter().brighter());
+		g.fillRect(0, 0, getWidth(), getHeight());
 		
+		handler.render(g);
+		
+		g.dispose();
+		bs.show();
 	}
 	
 	private void tick() {
