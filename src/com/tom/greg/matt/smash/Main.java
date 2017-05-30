@@ -8,14 +8,19 @@ import java.awt.image.BufferStrategy;
 
 public class Main extends Canvas implements Runnable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 150, HEIGHT = WIDTH *5/7, SCALE = 3;
 	public static boolean running = false, gameOver = false;
 	private Thread thread;
 	private int seconds = 0;
 	public Handler handler;
+	public Player player1, player2;
 	
 	private void init() {
-		
+		player1 = new Player(300, 100, 30, 90, 100);
 	}
 	
 	private void render() {
