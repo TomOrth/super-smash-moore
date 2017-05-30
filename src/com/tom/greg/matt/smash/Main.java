@@ -32,7 +32,7 @@ public class Main extends Canvas implements Runnable {
 
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 
-		g.setColor(Color.BLUE.brighter().brighter());
+		g.setColor(Color.GRAY.brighter().brighter());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		handler.render(g);
@@ -42,7 +42,7 @@ public class Main extends Canvas implements Runnable {
 	}
 	
 	private void tick() {
-		
+		handler.tick();
 	}
 	
 	public Main() {
