@@ -1,5 +1,13 @@
 package com.tom.greg.matt.smash;
 
-public class Handler {
+import java.awt.Graphics;
 
+public class Handler {
+	public void render(Graphics g){
+		
+	}
+	
+	public void tick(){
+		
+	}
 }
