@@ -60,19 +60,19 @@ public abstract class Entity {
 		this.height = height;
 	}
 
-	public double getvX() {
+	public double getVX() {
 		return vX;
 	}
 
-	public void setvX(double vX) {
+	public void setVX(double vX) {
 		this.vX = vX;
 	}
 
-	public double getvY() {
+	public double getVY() {
 		return vY;
 	}
 
-	public void setvY(double vY) {
+	public void setVY(double vY) {
 		this.vY = vY;
 	}
 

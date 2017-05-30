@@ -4,9 +4,20 @@ import java.awt.Graphics;
 
 public class Player extends Entity{
 
-	public Player(int x, int y, int width, int height) {
+	public int health;
+	
+	public Player(int x, int y, int width, int height, int health) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
+		this.health = health;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
 	}
 
 	@Override
@@ -18,7 +29,8 @@ public class Player extends Entity{
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
-		
+		x += vX;
+		y += vY;
 	}
 	
 }
