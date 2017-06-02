@@ -12,12 +12,13 @@ public class Player extends Entity{
 	private String name;
 	private String pos;
 	private BufferedImage right, left, leftWalk, rightWalk, mainImage;
-
+    private boolean isWalking;
 	public Player(int x, int y, int width, int height, int health, String name, String pos) {
 		super(x, y, width, height);
 		this.health = health;
 		this.name = name;
 		this.pos = pos;
+		this.isWalking = false;
 		try {
 			this.right = ImageIO.read(getClass().getResource("/" + name + "/right.gif"));
 			this.left = ImageIO.read(getClass().getResource("/" + name + "/left.gif"));
@@ -48,23 +49,34 @@ public class Player extends Entity{
 
 	public void right() {
 		vX = 2;
-		this.mainImage = this.rightWalk;
+		if (!isWalking) {
+			isWalking = true;
+			this.mainImage = this.rightWalk;
+		}
 	}
 	
 	public void left() {
 		vX = -2;
-		this.mainImage = this.leftWalk;
-		System.out.println(vX);
+		if (!isWalking) {
+			isWalking = true;
+			this.mainImage = this.leftWalk;
+		}
 	}
 	
 	public void restLeft() {
 		vX = 0;
-		this.mainImage = this.left;
+		if (isWalking) {
+			isWalking = false;
+			this.mainImage = this.left;
+		}
 	}
 	
 	public void restRight() {
 		vX = 0;
-		this.mainImage = this.right;
+		if (isWalking) {
+			isWalking = false;
+			this.mainImage = this.right;
+		}
 	}
 	
 

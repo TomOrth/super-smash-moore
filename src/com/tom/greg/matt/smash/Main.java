@@ -34,7 +34,9 @@ public class Main extends Canvas implements Runnable {
 	}
 	
 	private void init() {
+		
 		player1 = new Player(300, 100, 30, 90, 100, "moore", "left");
+		player2 = new Player(100, 100, 30, 90, 100, "less", "right");
 		handler = new Handler();
 		addKeyListener(new Listener());
 	}
