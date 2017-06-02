@@ -54,13 +54,16 @@ public class Player extends Entity{
 	public void left() {
 		vX = -2;
 		this.mainImage = this.leftWalk;
+		System.out.println(vX);
 	}
 	
 	public void restLeft() {
+		vX = 0;
 		this.mainImage = this.left;
 	}
 	
 	public void restRight() {
+		vX = 0;
 		this.mainImage = this.right;
 	}
 	

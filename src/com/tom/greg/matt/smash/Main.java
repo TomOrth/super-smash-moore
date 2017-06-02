@@ -19,8 +19,7 @@ public class Main extends Canvas implements Runnable {
 	private Thread thread;
 	private int seconds = 0;
 	public Handler handler;
-	public static Player player1;
-	public Player player2;
+	public static Player player1, player2;
 	
 	public static void main(String[] args) {
 		Main game = new Main();
@@ -37,6 +36,7 @@ public class Main extends Canvas implements Runnable {
 	private void init() {
 		player1 = new Player(300, 100, 30, 90, 100, "moore", "left");
 		handler = new Handler();
+		addKeyListener(new Listener());
 	}
 	
 	private void render() {

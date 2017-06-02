@@ -9,6 +9,6 @@ public class Handler {
 	}
 	
 	public void tick(){
-		
+		Main.player1.tick();
 	}
 }
