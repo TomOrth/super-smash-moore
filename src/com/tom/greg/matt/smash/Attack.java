@@ -4,22 +4,21 @@ import java.awt.Graphics;
 
 public class Attack extends Entity{
 
-	private int vX;
+	private String name;
 	
-	public Attack(int x, int y, int width, int height) {
+	public Attack(int x, int y, int width, int height, int vX, String name) {
 		super(x, y, width, height);
-		// TODO Auto-generated constructor stub
+		this.vX = vX;
+		this.name = name;
 	}
 
 	@Override
 	public void render(Graphics g) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
 		x += vX;
 	}
 }
