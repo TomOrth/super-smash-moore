@@ -52,7 +52,8 @@ public class Main extends Canvas implements Runnable {
 
 		g.setColor(Color.BLUE.brighter().brighter());
 		g.fillRect(0, 0, getWidth(), getHeight());
-		
+		g.setColor(Color.GREEN);
+		g.fillRect(0, getHeight()-185, getWidth(), 900);
 		handler.render(g);
 		
 		g.dispose();
