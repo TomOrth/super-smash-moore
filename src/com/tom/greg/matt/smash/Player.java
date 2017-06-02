@@ -49,34 +49,22 @@ public class Player extends Entity{
 
 	public void right() {
 		vX = 2;
-		if (!isWalking) {
-			isWalking = true;
-			this.mainImage = this.rightWalk;
-		}
+		this.mainImage = this.rightWalk;
 	}
 	
 	public void left() {
 		vX = -2;
-		if (!isWalking) {
-			isWalking = true;
-			this.mainImage = this.leftWalk;
-		}
+		this.mainImage = this.leftWalk;
 	}
 	
 	public void restLeft() {
 		vX = 0;
-		if (isWalking) {
-			isWalking = false;
-			this.mainImage = this.left;
-		}
+		this.mainImage = this.left;
 	}
 	
 	public void restRight() {
 		vX = 0;
-		if (isWalking) {
-			isWalking = false;
-			this.mainImage = this.right;
-		}
+		this.mainImage = this.right;
 	}
 	
 

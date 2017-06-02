@@ -20,10 +20,10 @@ public class Listener implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_A:
 			Main.player1.restLeft();
 			break;
-		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			Main.player1.restRight();
 			break;
 		}
