@@ -14,6 +14,12 @@ public class Listener implements KeyListener {
 		case KeyEvent.VK_D:
 			Main.player1.right();
 			break;
+		case KeyEvent.VK_LEFT:
+			Main.player2.left();
+			break;
+		case KeyEvent.VK_RIGHT:
+			Main.player2.right();
+			break;
 		}
 	}
 
@@ -25,6 +31,12 @@ public class Listener implements KeyListener {
 			break;
 		case KeyEvent.VK_D:
 			Main.player1.restRight();
+			break;
+		case KeyEvent.VK_LEFT:
+			Main.player2.restLeft();
+			break;
+		case KeyEvent.VK_RIGHT:
+			Main.player2.restRight();
 			break;
 		}
 	}
