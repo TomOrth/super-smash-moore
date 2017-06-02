@@ -24,7 +24,7 @@ public class Main extends Canvas implements Runnable {
 	
 	public static void main(String[] args) {
 		Main game = new Main();
-		JFrame frame = new JFrame("Flappy Bird!!!");
+		JFrame frame = new JFrame("MOORE SMASH!!!");
 		frame.add(game);
 		frame.pack();
 		frame.setResizable(false);
@@ -48,7 +48,7 @@ public class Main extends Canvas implements Runnable {
 
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 
-		g.setColor(Color.GRAY.brighter().brighter());
+		g.setColor(Color.BLUE.brighter().brighter());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		handler.render(g);
