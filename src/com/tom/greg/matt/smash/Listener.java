@@ -8,10 +8,10 @@ public class Listener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
-		case KeyEvent.VK_LEFT:
+		case KeyEvent.VK_A:
 			Main.player1.left();
 			break;
-		case KeyEvent.VK_RIGHT:
+		case KeyEvent.VK_D:
 			Main.player1.right();
 			break;
 		}
