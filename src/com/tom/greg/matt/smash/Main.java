@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
+import javax.swing.JFrame;
+
 public class Main extends Canvas implements Runnable {
 	
 	/**
@@ -17,10 +19,24 @@ public class Main extends Canvas implements Runnable {
 	private Thread thread;
 	private int seconds = 0;
 	public Handler handler;
-	public Player player1, player2;
+	public static Player player1;
+	public Player player2;
+	
+	public static void main(String[] args) {
+		Main game = new Main();
+		JFrame frame = new JFrame("Flappy Bird!!!");
+		frame.add(game);
+		frame.pack();
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		game.start();
+	}
 	
 	private void init() {
-		player1 = new Player(300, 100, 30, 90, 100);
+		player1 = new Player(300, 100, 30, 90, 100, "moore", "left");
+		handler = new Handler();
 	}
 	
 	private void render() {
