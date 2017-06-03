@@ -1,4 +1,4 @@
-package com.tom.greg.matt.smash;
+package com.tom.greg.matt.smash.entity;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

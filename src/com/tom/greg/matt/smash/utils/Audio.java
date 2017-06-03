@@ -1,4 +1,4 @@
-package com.tom.greg.matt.smash;
+package com.tom.greg.matt.smash.utils;
 
 import java.io.File;
 

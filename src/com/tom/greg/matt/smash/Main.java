@@ -4,9 +4,14 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+
+import com.atf.binder.KeyBinder;
+import com.atf.binder.enums.KeyState;
+import com.tom.greg.matt.smash.entity.Player;
 
 public class Main extends Canvas implements Runnable {
 	
@@ -18,6 +23,7 @@ public class Main extends Canvas implements Runnable {
 	public static boolean running = false, gameOver = false;
 	private Thread thread;
 	private int seconds = 0;
+	private KeyBinder binder;
 	public Handler handler;
 	public static Player player1, player2;
 	
@@ -38,7 +44,19 @@ public class Main extends Canvas implements Runnable {
 		player1 = new Player(100, 100, 30, 90, 100, "moore", "right");
 		player2 = new Player(300, 100, 30, 90, 100, "less", "left");
 		handler = new Handler();
-		addKeyListener(new Listener());
+		binder = new KeyBinder();
+		
+		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_A, player1::left);
+		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_D, player1::right);
+		binder.when(KeyState.RELEASED).bindAction(KeyEvent.VK_A, player1::restLeft);
+		binder.when(KeyState.RELEASED).bindAction(KeyEvent.VK_D, player1::restRight);
+		
+		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_LEFT, player2::left);
+		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_RIGHT, player2::right);
+		binder.when(KeyState.RELEASED).bindAction(KeyEvent.VK_LEFT, player2::restLeft);
+		binder.when(KeyState.RELEASED).bindAction(KeyEvent.VK_RIGHT, player2::restRight);
+		
+		addKeyListener(binder);
 	}
 	
 	private void render() {
