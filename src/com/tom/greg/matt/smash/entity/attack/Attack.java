@@ -1,6 +1,9 @@
-package com.tom.greg.matt.smash.entity;
+package com.tom.greg.matt.smash.entity.attack;
 
 import java.awt.Graphics;
+
+import com.tom.greg.matt.smash.entity.Entity;
+import com.tom.greg.matt.smash.utils.ImageMap;
 
 public class Attack extends Entity{
 
@@ -14,7 +17,7 @@ public class Attack extends Entity{
 
 	@Override
 	public void render(Graphics g) {
-		
+		g.drawImage(ImageMap.get(name), x, y, null);
 	}
 
 	@Override
