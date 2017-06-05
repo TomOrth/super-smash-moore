@@ -43,13 +43,24 @@ public class Handler {
 		}
 		
 		if (Main.player1.getHealth() <= 0) {
-			Audio.play("res/death.wav");
+			Main.player1.attacks.clear();
+			Main.player2.attacks.clear();
+
+			if (!isDeath) {
+				isDeath = true;
+				Audio.play("res/death.wav");
+			}
 			Main.gameOver = true;
 			Main.winnerMessage = "Player 2 wins";
 		}
 		
 		else if (Main.player2.getHealth() <= 0) {
-			Audio.play("res/death.wav");
+			Main.player1.attacks.clear();
+			Main.player2.attacks.clear();
+			if (!isDeath) {
+				isDeath = true;
+				Audio.play("res/death.wav");
+			}
 			Main.gameOver = true;
 			Main.winnerMessage = "Player 1 wins";
 		}
