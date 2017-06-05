@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import com.tom.greg.matt.smash.Main;
 import com.tom.greg.matt.smash.entity.attack.Attack;
 import com.tom.greg.matt.smash.entity.attack.FireAttack;
 import com.tom.greg.matt.smash.entity.attack.RockAttack;
+import com.tom.greg.matt.smash.utils.Audio;
 
 public class Player extends Entity{
 
@@ -17,20 +19,21 @@ public class Player extends Entity{
 	private String name;
 	private String pos;
 	private BufferedImage right, left, leftWalk, rightWalk, mainImage;
-    private boolean isWalking;
+    private boolean isJumping;
     public ArrayList<Attack> attacks;
 	public Player(int x, int y, int width, int height, int health, String name, String pos) {
 		super(x, y, width, height);
 		this.health = health;
 		this.name = name;
 		this.pos = pos;
-		this.isWalking = false;
+		this.isJumping = false;
 		attacks = new ArrayList<Attack>();
 		try {
 			this.right = ImageIO.read(getClass().getResource("/" + name + "/right.gif"));
 			this.left = ImageIO.read(getClass().getResource("/" + name + "/left.gif"));
 			this.rightWalk = ImageIO.read(getClass().getResource("/" + name + "/rightWalk.gif"));
 			this.leftWalk = ImageIO.read(getClass().getResource("/" + name + "/leftWalk.gif"));
+			this.vY = 4;
 			if (pos.equals("left")) this.mainImage = left;
 			else this.mainImage = right;
 		} catch (IOException e) {
@@ -58,37 +61,58 @@ public class Player extends Entity{
 		return attacks;
 	}
 	public void right() {
-		vX = 2;
-		pos = "right";
-		this.mainImage = this.rightWalk;
+		if (!Main.gameOver) {
+			vX = 2;
+			pos = "right";
+			this.mainImage = this.rightWalk;
+		}
 	}
 	
 	public void left() {
-		vX = -2;
-		pos = "left";
-		this.mainImage = this.leftWalk;
+		if (!Main.gameOver) {
+			vX = -2;
+			pos = "left";
+			this.mainImage = this.leftWalk;
+		}
 	}
 	
 	public void restLeft() {
-		vX = 0;
-		pos = "left";
-		this.mainImage = this.left;
+		if (!Main.gameOver) {
+			vX = 0;
+			pos = "left";
+			this.mainImage = this.left;
+		}
 	}
 	
 	public void restRight() {
-		vX = 0;
-		pos = "right";
-		this.mainImage = this.right;
+		if (!Main.gameOver) {
+			vX = 0;
+			pos = "right";
+			this.mainImage = this.right;
+		}
 	}
 	
 	public void fire() {
-		int wX = pos.equals("left") ? x -3 : x + 3, vX = pos.equals("left") ? -5 : 5;
-		attacks.add(new FireAttack(wX, y - 3, vX));
+		if (!Main.gameOver) {
+			int wX = pos.equals("left") ? x -3 : x + 3, vX = pos.equals("left") ? -5 : 5;
+			attacks.add(new FireAttack(wX, y - 3, vX));
+			Audio.play(name.equals("moore") ? "res/pkfire.wav" : "res/Hit1.wav");
+		}
 	}
 	
 	public void rock() {
-		int wX = pos.equals("left") ? x -3 : x + 3, vX = pos.equals("left") ? -3 : 3;
-		attacks.add(new RockAttack(wX, y - 3, vX));
+		if (!Main.gameOver) {
+			int wX = pos.equals("left") ? x -3 : x + 3, vX = pos.equals("left") ? -3 : 3;
+			attacks.add(new RockAttack(wX, y - 3, vX));
+		    Audio.play(name.equals("moore") ? "res/pkrock.wav" : "res/Rattack1.wav");
+		}
+	}
+	
+	public void jump() {
+		if (!isJumping && !Main.gameOver) {
+			isJumping = true;
+			vY = -50;
+		}
 	}
 	
 	public void reduceHealth(int reduce) {
@@ -108,6 +132,11 @@ public class Player extends Entity{
 	public void tick() {
 		x += vX;
 		y += vY;
+		vY = 4;
+		if (y > 100) {
+			y = 100;
+			isJumping = false;
+		}
 	}
 	
 }

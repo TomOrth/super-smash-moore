@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import com.tom.greg.matt.smash.entity.attack.Attack;
 import com.tom.greg.matt.smash.entity.attack.FireAttack;
+import com.tom.greg.matt.smash.utils.Audio;
 
 public class Handler {
 	
@@ -41,11 +42,13 @@ public class Handler {
 		}
 		
 		if (Main.player1.getHealth() <= 0) {
+			Audio.play("res/death.wav");
 			Main.gameOver = true;
 			Main.winnerMessage = "Player 2 wins";
 		}
 		
 		else if (Main.player2.getHealth() <= 0) {
+			Audio.play("res/death.wav");
 			Main.gameOver = true;
 			Main.winnerMessage = "Player 1 wins";
 		}
