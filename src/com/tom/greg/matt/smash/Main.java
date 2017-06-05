@@ -46,8 +46,8 @@ public class Main extends Canvas implements Runnable {
 	private void init() {
 		ImageMap.initialize();
 		Audio.loop("res/brawl.wav");
-		player1 = new Player(100, 100, 30, 90, 100, "moore", "right");
-		player2 = new Player(300, 100, 30, 90, 100, "less", "left");
+		player1 = new Player(100, 100, 30, 90, 1000, "moore", "right");
+		player2 = new Player(300, 100, 30, 90, 1000, "less", "left");
 		handler = new Handler();
 		binder = new KeyBinder();
 		

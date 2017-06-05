@@ -8,6 +8,7 @@ import com.tom.greg.matt.smash.utils.Audio;
 
 public class Handler {
 	
+	boolean isDeath = false;
 	public void render(Graphics g){
 		Main.player1.render(g);
 		for (int i = 0; i < Main.player1.getAttacks().size(); ++i) {
