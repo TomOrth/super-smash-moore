@@ -46,8 +46,8 @@ public class Main extends Canvas implements Runnable {
 	private void init() {
 		ImageMap.initialize();
 		Audio.loop("res/brawl.wav");
-		player1 = new Player(100, 100, 30, 90, 1000, "moore", "right");
-		player2 = new Player(300, 100, 30, 90, 1000, "less", "left");
+		player1 = new Player(100, 200, 30, 90, 1000, "moore", "right");
+		player2 = new Player(300, 200, 30, 90, 1000, "less", "left");
 		handler = new Handler();
 		binder = new KeyBinder();
 		
@@ -82,7 +82,7 @@ public class Main extends Canvas implements Runnable {
 		g.setColor(Color.BLUE.brighter().brighter());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		g.setColor(Color.GREEN);
-		g.fillRect(0, getHeight()-185, getWidth(), 900);
+		g.fillRect(0, getHeight()-85, getWidth(), 900);
 		g.setColor(Color.WHITE);
 		
 		g.drawString("Player 1 Health: " + Integer.toString(player1.getHealth()), 5, 10);
@@ -91,7 +91,9 @@ public class Main extends Canvas implements Runnable {
 		
 		if (gameOver) {
 			g.setFont(new Font("Arial", 1, 20));
-			g.drawString(winnerMessage, getWidth()/2-70, getHeight()/2);
+			g.drawString(winnerMessage, getWidth()/2-70, getHeight()/2-50);
+			g.drawString("To play again, recompile the program", getWidth()/2-170, getHeight()/2-20);
+			g.drawString("(Give us an A (plz))", getWidth()/2-100, getHeight()/2+20);
 		}
 		
 		handler.render(g);

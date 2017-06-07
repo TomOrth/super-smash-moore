@@ -133,8 +133,8 @@ public class Player extends Entity{
 		x += vX;
 		y += vY;
 		vY = 4;
-		if (y > 100) {
-			y = 100;
+		if (y > 200) {
+			y = 200;
 			isJumping = false;
 		}
 	}
