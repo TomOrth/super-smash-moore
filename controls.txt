@@ -1,0 +1,15 @@
+Player 1 (moore)
+
+w - jump
+a - left
+d - right
+q - fire
+e - rock
+
+Player 2 (less)
+
+up arrow - jump
+left arrow - left
+right arrow - right
+/ and ? key - fire
+shift - rock

@@ -12,18 +12,19 @@ import javax.swing.JFrame;
 
 import com.atf.binder.KeyBinder;
 import com.atf.binder.enums.KeyState;
+import com.atf.keybinder.interfaces.Executor;
 import com.tom.greg.matt.smash.entity.Player;
 import com.tom.greg.matt.smash.utils.Audio;
 import com.tom.greg.matt.smash.utils.ImageMap;
 
-public class Main extends Canvas implements Runnable {
+public class Main extends Canvas implements Runnable, Executor {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 150, HEIGHT = WIDTH *5/7, SCALE = 3;
-	public static boolean running = false, gameOver = false;
+	public static boolean running = false, gameOver = false, startMsg = true;
 	private Thread thread;
 	private int seconds = 0;
 	private KeyBinder binder;
@@ -45,11 +46,13 @@ public class Main extends Canvas implements Runnable {
 	
 	private void init() {
 		ImageMap.initialize();
-		Audio.loop("res/brawl.wav");
+		
 		player1 = new Player(100, 200, 30, 90, 1000, "moore", "right");
 		player2 = new Player(300, 200, 30, 90, 1000, "less", "left");
 		handler = new Handler();
 		binder = new KeyBinder();
+		
+		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_SPACE, this);
 		
 		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_W, player1::jump);
 		binder.when(KeyState.PRESSED).bindAction(KeyEvent.VK_A, player1::left);
@@ -85,10 +88,16 @@ public class Main extends Canvas implements Runnable {
 		g.fillRect(0, getHeight()-85, getWidth(), 900);
 		g.setColor(Color.WHITE);
 		
-		g.drawString("Player 1 Health: " + Integer.toString(player1.getHealth()), 5, 10);
- 		g.drawString("Time: " + Integer.toString(seconds), getWidth()/2-30, 10);
-		g.drawString("Player 2 Health: " + Integer.toString(player2.getHealth()), getWidth()-130, 10);
-		
+		if (startMsg) {
+			g.setFont(new Font("Arial", 1, 20));
+			g.drawString("See controls.txt for control layout", getWidth()/2-140, getHeight()/2-50);
+			g.drawString("Press spacebar to start", getWidth()/2-100, getHeight()/2+20);
+		}
+		else {
+			g.drawString("Player 1 Health: " + Integer.toString(player1.getHealth()), 5, 10);
+			g.drawString("Time: " + Integer.toString(seconds), getWidth()/2-30, 10);
+			g.drawString("Player 2 Health: " + Integer.toString(player2.getHealth()), getWidth()-130, 10);
+		}
 		if (gameOver) {
 			g.setFont(new Font("Arial", 1, 20));
 			g.drawString(winnerMessage, getWidth()/2-70, getHeight()/2-50);
@@ -168,5 +177,11 @@ public class Main extends Canvas implements Runnable {
 		
 		stop();
 		
+	}
+
+	@Override
+	public void execute() {
+		startMsg = false;
+		Audio.loop("res/brawl.wav");
 	}
 }

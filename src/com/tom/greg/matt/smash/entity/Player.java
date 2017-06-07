@@ -61,7 +61,7 @@ public class Player extends Entity{
 		return attacks;
 	}
 	public void right() {
-		if (!Main.gameOver) {
+		if (!Main.gameOver && !Main.startMsg) {
 			vX = 2;
 			pos = "right";
 			this.mainImage = this.rightWalk;
@@ -69,7 +69,7 @@ public class Player extends Entity{
 	}
 	
 	public void left() {
-		if (!Main.gameOver) {
+		if (!Main.gameOver && !Main.startMsg) {
 			vX = -2;
 			pos = "left";
 			this.mainImage = this.leftWalk;
@@ -77,7 +77,7 @@ public class Player extends Entity{
 	}
 	
 	public void restLeft() {
-		if (!Main.gameOver) {
+		if (!Main.gameOver && !Main.startMsg) {
 			vX = 0;
 			pos = "left";
 			this.mainImage = this.left;
@@ -85,7 +85,7 @@ public class Player extends Entity{
 	}
 	
 	public void restRight() {
-		if (!Main.gameOver) {
+		if (!Main.gameOver && !Main.startMsg) {
 			vX = 0;
 			pos = "right";
 			this.mainImage = this.right;
@@ -93,7 +93,7 @@ public class Player extends Entity{
 	}
 	
 	public void fire() {
-		if (!Main.gameOver) {
+		if (!Main.gameOver && !Main.startMsg) {
 			int wX = pos.equals("left") ? x -3 : x + 3, vX = pos.equals("left") ? -5 : 5;
 			attacks.add(new FireAttack(wX, y - 3, vX));
 			Audio.play(name.equals("moore") ? "res/pkfire.wav" : "res/Hit1.wav");
@@ -101,7 +101,7 @@ public class Player extends Entity{
 	}
 	
 	public void rock() {
-		if (!Main.gameOver) {
+		if (!Main.gameOver && !Main.startMsg) {
 			int wX = pos.equals("left") ? x -3 : x + 3, vX = pos.equals("left") ? -3 : 3;
 			attacks.add(new RockAttack(wX, y - 3, vX));
 		    Audio.play(name.equals("moore") ? "res/pkrock.wav" : "res/Rattack1.wav");
@@ -109,7 +109,7 @@ public class Player extends Entity{
 	}
 	
 	public void jump() {
-		if (!isJumping && !Main.gameOver) {
+		if (!isJumping && !Main.gameOver && !Main.startMsg) {
 			isJumping = true;
 			vY = -250;
 		}
@@ -117,10 +117,6 @@ public class Player extends Entity{
 	
 	public void reduceHealth(int reduce) {
 		health -= reduce;
-	}
-	
-	public void increaseHealth(int increase) {
-		health += increase;
 	}
 	
 	@Override
