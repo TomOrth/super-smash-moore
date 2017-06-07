@@ -111,7 +111,7 @@ public class Player extends Entity{
 	public void jump() {
 		if (!isJumping && !Main.gameOver) {
 			isJumping = true;
-			vY = -50;
+			vY = -250;
 		}
 	}
 	
