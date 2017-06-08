@@ -121,6 +121,7 @@ public class Player extends Entity{
 	
 	@Override
 	public void render(Graphics g) {
+		g.drawString(name, x, y-15);
 		g.drawImage(mainImage, x, y, null);
 	}
 

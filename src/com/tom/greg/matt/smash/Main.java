@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
@@ -81,6 +82,7 @@ public class Main extends Canvas implements Runnable, Executor {
 		}
 
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g.setColor(Color.BLUE.brighter().brighter());
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -88,10 +90,12 @@ public class Main extends Canvas implements Runnable, Executor {
 		g.fillRect(0, getHeight()-85, getWidth(), 900);
 		g.setColor(Color.WHITE);
 		
+		handler.render(g);
+		
 		if (startMsg) {
 			g.setFont(new Font("Arial", 1, 20));
-			g.drawString("See controls.txt for control layout", getWidth()/2-140, getHeight()/2-50);
-			g.drawString("Press spacebar to start", getWidth()/2-100, getHeight()/2+20);
+			g.drawString("See controls.txt for control layout", getWidth()/2-140, getHeight()/2-20);
+			g.drawString("Press spacebar to start", getWidth()/2-100, getHeight()/2);
 		}
 		else {
 			g.drawString("Player 1 Health: " + Integer.toString(player1.getHealth()), 5, 10);
@@ -100,12 +104,12 @@ public class Main extends Canvas implements Runnable, Executor {
 		}
 		if (gameOver) {
 			g.setFont(new Font("Arial", 1, 20));
-			g.drawString(winnerMessage, getWidth()/2-70, getHeight()/2-50);
-			g.drawString("To play again, recompile the program", getWidth()/2-170, getHeight()/2-20);
-			g.drawString("(Give us an A (plz))", getWidth()/2-100, getHeight()/2+20);
+			g.drawString(winnerMessage, getWidth()/2-70, getHeight()/2-40);
+			g.drawString("To play again, recompile the program", getWidth()/2-170, getHeight()/2-10);
+			g.drawString("Give us an A (plz)", getWidth()/2-100, getHeight()/2+10);
 		}
 		
-		handler.render(g);
+		
 		
 		g.dispose();
 		bs.show();

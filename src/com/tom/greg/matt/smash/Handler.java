@@ -45,7 +45,7 @@ public class Handler {
 		if (Main.player1.getHealth() <= 0) {
 			Main.player1.attacks.clear();
 			Main.player2.attacks.clear();
-
+			Audio.stopLoop();
 			if (!isDeath) {
 				isDeath = true;
 				Audio.play("res/death.wav");
@@ -57,6 +57,7 @@ public class Handler {
 		else if (Main.player2.getHealth() <= 0) {
 			Main.player1.attacks.clear();
 			Main.player2.attacks.clear();
+			Audio.stopLoop();
 			if (!isDeath) {
 				isDeath = true;
 				Audio.play("res/death.wav");
