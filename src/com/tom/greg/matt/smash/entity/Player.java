@@ -134,6 +134,9 @@ public class Player extends Entity{
 			y = 200;
 			isJumping = false;
 		}
+		
+		if (x <= 0) x = 0;
+		if (x > Main.WIDTH*Main.SCALE - 20) x  = Main.WIDTH*Main.SCALE - 20;
 	}
 	
 }
