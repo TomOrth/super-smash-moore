@@ -6,3 +6,6 @@ No JAR file has been provided due to the fact there are glitches that I do not h
 Compile the program either in Eclipse or in the command line using ```javac``` and ```java```
 
 See controls.txt for more information
+
+## Licensing
+This software is available under the MIT License.
